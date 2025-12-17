@@ -43,10 +43,11 @@
                                th:hx-get="@{/categoria_despesa/editar/{id}(id=${categoria.id})}" hx-target="#content" hx-swap="innerHTML">
                                 <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
                             </a>
-                            <a class="btn btn-danger btn-sm" th:href="@{/categoria_despesa/excluir/{id}(id=${categoria.id})}" role="button"
-                               onclick="return confirm('Tem certeza que deseja excluir esta categoria?')">
+                            <button class="btn btn-danger btn-sm"
+                                    th:hx-delete="@{/categoria_despesa/excluir/{id}(id=${categoria.id})}"
+                                    hx-confirm="Tem certeza que deseja excluir esta categoria?">
                                 <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-                            </a>
+                            </button>
                         </td>
                     </tr>
                     </tbody>

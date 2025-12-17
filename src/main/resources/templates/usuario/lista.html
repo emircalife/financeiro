@@ -44,10 +44,12 @@
                                th:hx-get="@{/user/editar/{id}(id=${user.id})}" hx-target="#content" hx-swap="innerHTML">
                                 <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
                             </a>
-                            <a class="btn btn-danger btn-sm" th:href="@{/user/excluir/{id}(id=${user.id})}" role="button"
-                               onclick="return confirm('Tem certeza que deseja excluir este usuário?')">
+                            <!-- Corrected to a button to allow DELETE verb -->
+                            <button class="btn btn-danger btn-sm"
+                                    th:hx-delete="@{/user/excluir/{id}(id=${user.id})}"
+                                    hx-confirm="Tem certeza que deseja excluir este usuário?">
                                 <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-                            </a>
+                            </button>
                         </td>
                     </tr>
                     </tbody>

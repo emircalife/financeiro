@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"/></head>
+<body>
+    <div th:fragment="corpo">
+        <div class="container" id="cadastro">
+            <nav class="navbar navbar-expand-md bg-light">
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <i class="oi oi-caret-right"></i>
+                            <span>Cadastrar Usuário</span>
+                        </li>
+                    </ul>
+                </div>
+                <a class="btn btn-primary btn-md" href="/user/listar" role="button"
+                   th:hx-get="@{/user/listar}" hx-target="#content" hx-swap="innerHTML">
+                    <span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span>
+                    <span>Listar Usuários</span>
+                </a>
+            </nav>
+
+            <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+                <span th:text="${success}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span th:text="${error}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <form th:object="${user}" th:action="@{/user/salvar}" method="POST"
+                  th:hx-post="@{/user/salvar}" hx-target="#content" hx-swap="innerHTML"> <!-- Corrected to th:hx-post -->
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="username">Nome do Usuário</label>
+                        <input type="text" class="form-control" id="username"
+                               placeholder="Nome do Usuário" th:field="*{username}"
+                               autofocus="autofocus" th:classappend="${#fields.hasErrors('username')} ? 'is-invalid' : ''"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{username}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email"
+                               placeholder="Email do Usuário" th:field="*{email}"
+                               th:classappend="${#fields.hasErrors('email')} ? 'is-invalid' : ''"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{email}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="password">Senha</label>
+                        <input type="password" class="form-control" id="password"
+                               placeholder="Senha do Usuário" th:field="*{password}"
+                               th:classappend="${#fields.hasErrors('password')} ? 'is-invalid' : ''"/>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{password}"></span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="repetirSenha">Repita a Senha</label>
+                        <input type="password" class="form-control" id="repetirSenha"
+                               placeholder="Repita a Senha do Usuário" th:field="*{repeatPassword}"/>
+                        <div class="invalid-feedback"></div>
+                    </div>
+                </div>
+                <br>
+                <input type="hidden" id="id" th:field="*{id}"/>
+                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

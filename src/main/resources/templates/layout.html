@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Controle Financeiro</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="/image/favicon.png"/>
+
+    <!-- CSRF Meta Tags for HTMX -->
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet"/>
+
+    <!-- HTMX Script -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body th:classappend="${isLoginPage} ? 'login-page' : ''">
+    <!-- Hide header on login page -->
+    <header th:unless="${isLoginPage or isHtmxRequest}" th:replace="~{fragments/header :: cabecalho}"></header>
+
+    <div class="layout-main">
+        <aside th:unless="${isLoginPage or isHtmxRequest}" class="sidebar-open">
+            <div th:replace="~{fragments/sidebar :: nav-sidebar}">
+                <span>menu</span>
+            </div>
+        </aside>
+        <!-- Added hx-trigger to listen for reload events -->
+        <section id="content" layout:fragment="corpo" hx-trigger="reload-content from:body" hx-get="">
+            <div>Conteudo das paginas</div>
+        </section>
+    </div>
+
+    <!-- Hide footer on login page -->
+    <footer th:unless="${isLoginPage or isHtmxRequest}" th:replace="~{fragments/footer :: rodape}"></footer>
+
+    <!-- Scripts -->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+    <script src="/webjars/bootstrap/js/popper.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- HTMX CSRF Configuration Script -->
+    <script type="text/javascript">
+        document.body.addEventListener('htmx:configRequest', function(evt) {
+            var csrfToken = document.querySelector('meta[name="_csrf"]').getAttribute('content');
+            var csrfHeader = document.querySelector('meta[name="_csrf_header"]').getAttribute('content');
+            evt.detail.headers[csrfHeader] = csrfToken;
+        });
+    </script>
+</body>
+</html>

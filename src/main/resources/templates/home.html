@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"/></head>
+<body>
+	<section class="layout-content" layout:fragment="corpo" th:fragment="corpo">
+
+		<!-- Filter Form Card -->
+		<div class="card mb-4">
+			<div class="card-body">
+				<form id="filter-form">
+					<div class="form-row">
+						<div class="col-md-4">
+							<label for="mesAno">Filtro por Mês/Ano</label>
+							<select id="mesAno" name="mesAno" class="form-control"
+									hx-get="/home/lists"
+									hx-trigger="change"
+									hx-target="#lists-wrapper"
+									hx-swap="innerHTML"
+									hx-include="#filter-form">
+								<option th:each="ma : ${listaMesAno}"
+										th:value="${ma}"
+										th:text="${ma}"
+										th:selected="${ma == mesAnoAtual}"></option>
+							</select>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<!-- Wrapper for both lists -->
+		<!-- On initial load, this div's content is rendered by the server. On updates, it's replaced by HTMX. -->
+		<div id="lists-wrapper">
+			<div th:include="~{fragments/home-lists-fragment :: lists-content}"></div>
+		</div>
+
+	</section>
+</body>
+</html>

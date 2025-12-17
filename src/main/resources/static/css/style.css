@@ -1,0 +1,145 @@
+/*
+ * Base structure
+ */
+html, body {
+	height: 100%;
+}
+
+body {
+	padding-top: 56px;
+	padding-left: 0;
+    background-color: #84BD91; /* Verde customizado */
+} 
+
+/*
+ * main layout
+ */
+.layout-main {
+    display: flex;
+    height: calc(100vh - 56px - 50px);
+}
+
+/*
+ * Login Page Specific Overrides
+ */
+body.login-page {
+    padding-top: 56px; /* Ensure header is not covered */
+}
+
+body.login-page .layout-main {
+    display: block; /* Override flex to allow content to be full width */
+    height: calc(100vh - 56px - 50px); /* Maintain height calculation */
+}
+
+body.login-page .layout-content {
+    display: flex; /* Use flex to center content */
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+    width: 100%; /* Take full width */
+    max-width: 100%; /* Ensure it doesn't overflow */
+    padding: 20px; /* Keep padding */
+}
+
+/*
+ * Sidebar (o <aside>)
+ */
+aside {
+    width: 0; /* Começa fechado */
+    background-color: #84BD91;
+    overflow-y: auto; /* Barra de rolagem SÓ no sidebar */
+    overflow-x: hidden;
+    transition: width .5s;
+    flex-shrink: 0; /* Impede que o sidebar encolha */
+    border-right: 1px solid #eee;
+}
+
+aside.sidebar-open {
+    width: 300px; /* Largura quando aberto */
+}
+
+/*
+ * Content (a <section>)
+ */
+.layout-content {
+    flex: 1; /* Faz o conteúdo crescer e ocupar o espaço restante */
+    padding: 20px;
+    overflow-y: auto; /* Adiciona rolagem ao conteúdo principal se necessário */
+}
+
+/*
+ * Regras antigas do sidebar (agora aplicadas ao nav interno)
+ */
+.sidebar .nav-item {
+	width: 100%;
+}
+
+.sidebar .nav-link {
+	border-radius: 0;
+    white-space: nowrap;
+    color:#1a1a1a;
+} 
+
+/*
+ * Cores e Estilos
+ */
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+	color: #fff;
+	background-color: #28a745;
+}
+
+.btn-primary {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-primary:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}
+
+/*
+ * Footer
+ */
+.layout-footer {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 50px;
+	border-top: 1px solid #eeeeee;
+    text-align: center; /* Adicionado para centralizar o conteúdo */
+}
+
+.footer-copy {
+	font-size: 92%;
+	font-weight: bold;
+	display: block;
+	color: #0d0c0c
+}
+
+body.login-page .layout-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+body.login-page .card {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    border-radius: 8px;
+}
+
+body.login-page {
+    /* Usa o mesmo background do sistema */
+    background-color: #84BD91;  /* ou o que o sistema usa */
+    padding-top: 60px; /* se o resto das telas “começa” depois do header */
+}

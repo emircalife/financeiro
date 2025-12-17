@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Controle Financeiro</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="/image/favicon.png"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="/css/style.css" rel="stylesheet"/>
+
+    <!-- HTMX Script -->
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body class="body-centered-layout"> <!-- Added specific class here -->
+    <!-- Header is always visible unless it's an HTMX request -->
+    <header th:unless="${isHtmxRequest}" th:replace="~{fragments/header :: cabecalho}"></header>
+
+    <div class="layout-main">
+        <section id="content" layout:fragment="corpo">
+            <div>Conteudo das paginas</div>
+        </section>
+    </div>
+
+
+    <!-- Footer should always be visible unless HTMX request -->
+    <footer th:unless="${isHtmxRequest}" th:replace="~{fragments/footer :: rodape}"></footer>
+
+    <!-- Scripts -->
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+    <script src="/webjars/bootstrap/js/popper.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</body>

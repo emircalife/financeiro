@@ -61,16 +61,16 @@ public class PasswordResetServiceImpl implements PasswordResetService {
         String link = baseUrl + "/resetar-senha?token=" + token;
 
         String body = """
-Olá,
-
-Você solicitou a redefinição de senha.
-Clique no link abaixo para criar uma nova senha:
-
-%s
-
-Este link expira em %d minutos.
-Se não foi você, ignore este e-mail.
-""".formatted(link, ttlMinutes);
+            Olá,
+            
+            Você solicitou a redefinição de senha.
+            Clique no link abaixo para criar uma nova senha:
+            
+            %s
+            
+            Este link expira em %d minutos.
+            Se não foi você, ignore este e-mail.
+            """.formatted(link, ttlMinutes);
 
         emailService.send(email, "Redefinição de senha", body);
     }

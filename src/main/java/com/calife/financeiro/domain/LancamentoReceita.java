@@ -12,7 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "lancamento_receita")
+@Table(name = "lancamentoReceita")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -41,11 +41,11 @@ public class LancamentoReceita extends AbstractEntity<Long>{
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "idCategoriaReceita_Receita", nullable = false) // FK
+    @JoinColumn(name = "idCategoriaReceita", nullable = false) // FK
     private CategoriaReceita categoriasReceita;
 
     @ManyToOne
-    @JoinColumn(name = "idUser_Receita", nullable = false) // FK
+    @JoinColumn(name = "idUser", nullable = false) // FK
     private User user;
 
     @Column(name="observacoes", length = 255)

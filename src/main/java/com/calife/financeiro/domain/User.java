@@ -31,12 +31,16 @@ public class User extends AbstractEntity<Long>{
     @Column(name="password", nullable = false, unique = true, length = 255)
     private String password;
 
+    @NotBlank
+    @Column(name="repeatPassword", nullable = false, unique = true, length = 255)
     private String repeatPassword;
 
     @CreationTimestamp
+    @Column(name="creationTimestamp")
     private Instant creationTimestamp;
 
     @UpdateTimestamp
+    @Column(name="updateTimestamp")
     private Instant updateTimestamp;
 
     @PrePersist

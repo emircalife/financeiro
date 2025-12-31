@@ -12,7 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "lancamento_despesa")
+@Table(name = "lancamentoDespesa")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -21,11 +21,11 @@ public class LancamentoDespesa extends AbstractEntity<Long>{
 
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Column(name="data_vencimento")
+    @Column(name="dataVencimento")
     private LocalDate dataVencimento;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Column(name="data_pagamento")
+    @Column(name="dataPagamento")
     private LocalDate dataPagamento;
 
     @NotBlank
@@ -33,33 +33,33 @@ public class LancamentoDespesa extends AbstractEntity<Long>{
     private String descricao;
 
     @NotNull
-    @Column(name="valorapagar")
+    @Column(name="valorAPagar")
     private Double valorAPagar;
 
-    @Column(name="valor_pago")
+    @Column(name="valorPago")
     private Double valorPago;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "id_categoria_despesa_despesa", nullable = false) // FK
+    @JoinColumn(name = "idCategoriaDespesa", nullable = false) // FK
     private CategoriaDespesa categoriasDespesa;
 
     @ManyToOne
-    @JoinColumn(name = "id_user_despesa", nullable = false) // FK
+    @JoinColumn(name = "idUser", nullable = false) // FK
     private User user;
 
     @Column(name="observacoes", length = 255)
     private String observacoes;
 
-    @Column(name="despesa_fixa")
+    @Column(name="despesaFixa")
     private Boolean despesaFixa;
 
     @NotNull
-    @Column(name="n_parcela")
+    @Column(name="nParcela")
     private Integer nParcela;
 
     @NotNull
-    @Column(name="total_parcelas")
+    @Column(name="totalParcelas")
     private Integer totalParcelas;
 
 }
